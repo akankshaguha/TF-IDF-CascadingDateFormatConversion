@@ -1,0 +1,43 @@
+group 'cascade-plunger'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'provided-base'
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.1'
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'http://conjars.org/repo/' }
+}
+
+ext.cascadingVersion = '3.0.2'
+ext.hadoopVersion = '2.6.0'
+
+dependencies {
+
+    compile group: 'com.hotels', name: 'plunger', version: '3.0.2'
+    provided  group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'commons-io', name: 'commons-io', version: '2.4'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.9.5'
+    provided  group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+    provided group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core', version: hadoopVersion
+    provided group: 'org.apache.hadoop', name: 'hadoop-common', version: hadoopVersion
+    provided group: 'cascading', name: 'cascading-hadoop2-mr1', version: cascadingVersion
+    provided group: 'cascading', name: 'cascading-core', version: cascadingVersion
+    provided group: 'cascading', name: 'cascading-local', version: cascadingVersion
+
+
+
+
+}
